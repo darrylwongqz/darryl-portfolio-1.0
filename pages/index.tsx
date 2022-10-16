@@ -9,10 +9,10 @@ const Home: NextPage = () => {
         <title>Darryl's Porfolio</title>
       </Head>
 
-      {/* Header */}
       <Header />
 
       {/* Hero*/}
+      <section id=""></section>
 
       {/* About */}
 
