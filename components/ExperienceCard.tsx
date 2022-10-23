@@ -21,9 +21,9 @@ function ExperienceCard({}: Props) {
 
       <div className="px-0 md:px-10 max-h-96">
         <h4 className="text-4xl font-light">Software Engineer</h4>
-        <p className="font-bold text-2xl mt-1">Alta Group</p>
+        <p className="mt-1 text-2xl font-bold">Alta Group</p>
 
-        <div className="flex space-x-2 my-2">
+        <div className="flex my-2 space-x-2">
           <Image
             src="https://i.ibb.co/vjKjmjR/313-3133777-javascript-transparent-background-svg-hd-png-download.png"
             alt="tech-logo"
@@ -33,11 +33,11 @@ function ExperienceCard({}: Props) {
           />
         </div>
 
-        <p className="uppercase py-5 text-gray-300">
+        <p className="py-5 text-gray-300 uppercase">
           Started work... - Ended...
         </p>
 
-        <ul className="list-disc space-y-4 ml-5 text-lg overflow-hidden overflow-y-scroll max-h-48 md:max-h-80">
+        <ul className="list-disc space-y-4 ml-5 text-lg overflow-hidden overflow-y-scroll max-h-48 md:max-h-80 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
           <li>
             Summary points Summary points Summary points Summary points Summary
             points Summary points Summary points Summary points Summary points
