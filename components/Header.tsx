@@ -2,10 +2,13 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { Social } from '../typings';
 
-type Props = {};
+type Props = {
+  socials: Social[];
+};
 
-function Header({}: Props) {
+function Header({ socials }: Props) {
   return (
     <header className="sticky top-0 z-20 flex items-start justify-between p-5 mx-auto max-w-7xl xl:items-center">
       <motion.div
@@ -23,21 +26,14 @@ function Header({}: Props) {
         className="flex flex-row items-center"
       >
         {/* Social Icons */}
-        <SocialIcon
-          url="https://www.youtube.com/channel/UCKhu0OqltN8pLT8tT_eELrw"
-          fgColor="grey"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://www.youtube.com/channel/UCKhu0OqltN8pLT8tT_eELrw"
-          fgColor="grey"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://www.youtube.com/channel/UCKhu0OqltN8pLT8tT_eELrw"
-          fgColor="grey"
-          bgColor="transparent"
-        />
+        {socials.map((social) => (
+          <SocialIcon
+            key={social._id}
+            url={social.url}
+            fgColor="grey"
+            bgColor="transparent"
+          />
+        ))}
       </motion.div>
 
       <Link href="#contact">

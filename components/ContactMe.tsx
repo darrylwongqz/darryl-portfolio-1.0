@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from '@heroicons/react/24/solid';
+import { PageInfo } from '../typings';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-type Props = {};
+type Props = {
+  pageInfo: PageInfo;
+};
 
 type Inputs = {
   name: string;
@@ -11,23 +15,23 @@ type Inputs = {
   message: string;
 };
 
-function ContactMe({}: Props) {
+function ContactMe({ pageInfo }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
-  //   const onSubmit: SubmitHandler<Inputs> = (data) => {
-  //     window.location.href = `mailto:${pageInfo.email}?subject=${data.subject}&body=Hi, my name is ${data.name}. ${data.message}`;
-  //   };
-
-  const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    window.location.href = `mailto:$darryl@darrylwong.com?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message}`;
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    window.location.href = `mailto:${pageInfo.email}?subject=${data.subject}&body=Hi, my name is ${data.name}. ${data.message}`;
   };
 
   return (
-    <div className="relative flex flex-col items-center h-screen px-10 mx-auto text-center md:text-left md:flex-row max-w-7xl justify-evenly">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className="relative flex flex-col items-center h-screen px-10 mx-auto text-center md:text-left md:flex-row max-w-7xl justify-evenly"
+    >
       <h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
         Contact
       </h3>
@@ -35,23 +39,23 @@ function ContactMe({}: Props) {
       <div className="flex flex-col space-y-10">
         <h4 className="text-4xl font-semibold text-center">
           I have got just what you need.{' '}
-          <span className="decoration-[#F7AB0A]/50 underline">Let's talk.</span>
+          <span className="decoration-[#F7AB0A]/50 underline">Lets Talk.</span>
         </h4>
 
         <div className="space-y-10">
           <div className="flex items-center justify-center space-x-5">
             <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">+1234567890</p>
+            <p className="text-2xl">{pageInfo.phoneNumber}</p>
           </div>
-
           <div className="flex items-center justify-center space-x-5">
             <EnvelopeIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">darryl@darrylwong.com</p>
+            <a className="text-2xl" href={`mailto:${pageInfo.email}`}>
+              {pageInfo.email}
+            </a>
           </div>
-
           <div className="flex items-center justify-center space-x-5">
             <MapPinIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />
-            <p className="text-2xl">123 Developer Lane</p>
+            <p className="text-2xl">{pageInfo.address}</p>
           </div>
         </div>
 
@@ -61,40 +65,40 @@ function ContactMe({}: Props) {
         >
           <div className="flex space-x-2">
             <input
-              {...register('name')}
-              placeholder="Name"
               className="contactInput"
+              placeholder="Name"
               type="text"
+              {...register('name')}
             />
             <input
-              {...register('email')}
-              placeholder="Email"
               className="contactInput"
-              type="email"
+              placeholder="Email"
+              type="text"
+              {...register('email')}
             />
           </div>
-
           <input
-            {...register('subject')}
-            placeholder="Subject"
             className="contactInput"
+            placeholder="Subject"
             type="text"
+            {...register('subject')}
+          />
+          <textarea
+            className="contactInput h-36"
+            placeholder="Message"
+            {...register('message')}
           />
 
-          <textarea
-            {...register('message')}
-            placeholder="Message"
-            className="contactInput"
-          />
           <button
             type="submit"
-            className="bg-[#F7AB0A] py-5 px-10 rounded-md text-black font-bold text-lg"
+            className="
+            bg-[#F7AB0A] py-5 px-10 rounded-md text-black font-bold text-lg "
           >
             Submit
           </button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
