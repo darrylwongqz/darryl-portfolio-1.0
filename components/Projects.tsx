@@ -42,7 +42,7 @@ function Projects({ projects }: Props) {
             <div className="max-w-6xl px-0 space-y-10 md:px-10">
               <h4 className="text-4xl font-semibold text-center">
                 <span className="decoration-[#F7AB0A]/50 underline">
-                  Case Studies {i + 1} of {projects.length}:
+                  Case Study {i + 1} of {projects.length}:
                 </span>{' '}
                 {project.title}
               </h4>
